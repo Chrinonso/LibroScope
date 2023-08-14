@@ -1,217 +1,482 @@
-# openapi: 3.0.0
-# info:
-#   title: LibroScope API
-#   contact: {}
-#   version: '1.0'
-# servers:
-#   - url: "http://localhost:3221"
-#     variables: {}
-# paths:
-#   /auth/register:
-#     post:
-#       tags:
-#         - Auth
-#       summary: Register User
-#       operationId: RegisterUser
-#       parameters: []
-#       requestBody:
-#         description: ''
-#         content:
-#           application/json:
-#             schema:
-#               $ref: '#/components/schemas/RegisterUserRequest'
-#             example:
-#               name: bob
-#               email: bob@gmail.com
-#               password: secret
-#         required: true
-#       responses:
-#         '200':
-#           description: ''
-#           headers: {}
-#       deprecated: false
-#       security: []
-#   /auth/login:
-#     post:
-#       tags:
-#         - Auth
-#       summary: Login User
-#       operationId: LoginUser
-#       parameters: []
-#       requestBody:
-#         description: ''
-#         content:
-#           application/json:
-#             schema:
-#               $ref: '#/components/schemas/LoginUserRequest'
-#             example:
-#               email: susan@gmail.com
-#               password: secret
-#         required: true
-#       responses:
-#         '200':
-#           description: ''
-#           headers: {}
-#       deprecated: false
-#       security: []
-#   /jobs:
-#     post:
-#       tags:
-#         - Jobs
-#       summary: Create Job
-#       operationId: CreateJob
-#       parameters: []
-#       requestBody:
-#         description: ''
-#         content:
-#           application/json:
-#             schema:
-#               $ref: '#/components/schemas/CreateJobRequest'
-#             example:
-#               company: google
-#               position: front-end developer
-#         required: true
-#       responses:
-#         '200':
-#           description: ''
-#           headers: {}
-#       deprecated: false
-#     get:
-#       tags:
-#         - Jobs
-#       summary: Get All Jobs
-#       operationId: GetAllJobs
-#       parameters: []
-#       responses:
-#         '200':
-#           description: ''
-#           headers: {}
-#       deprecated: false
-#   /jobs/{id}:
-#     parameters:
-#       - in: path
-#         name: id
-#         schema:
-#           type: string
-#         required: true
-#         description: The job ID
-#     get:
-#       tags:
-#         - Jobs
-#       summary: Get Single Job
-#       operationId: GetSingleJob
-#       parameters: []
-#       responses:
-#         '200':
-#           description: ''
-#           headers: {}
-#       deprecated: false
+openapi: 3.0.0
+info:
+  title: LibroScope API
+  description: LibroScope is a comprehensive platform that helps users keep track of their reading and movie-watching activities. It combines the functionality of a book hub and a movie hub, allowing users to effortlessly manage their literary and cinematic journeys. With LibroScope, users can add and organize their favorite books and movies, track their progress, and create personalized lists. Whether you're an avid reader, a passionate movie enthusiast, or both, LibroScope provides a convenient and user-friendly interface to explore, discover, and stay organized with your entertainment experiences.
 
-#     patch:
-#       tags:
-#         - Jobs
-#       summary: Update Job
-#       operationId: UpdateJob
-#       parameters: []
-#       requestBody:
-#         description: ''
-#         content:
-#           application/json:
-#             schema:
-#               $ref: '#/components/schemas/UpdateJobRequest'
-#             example:
-#               company: random
-#               position: intern
-#         required: true
-#       responses:
-#         '200':
-#           description: ''
-#           headers: {}
-#       deprecated: false
-#     delete:
-#       tags:
-#         - Jobs
-#       summary: Delete Job
-#       operationId: DeleteJob
-#       parameters: []
-#       responses:
-#         '200':
-#           description: ''
-#           headers: {}
-#       deprecated: false
-# components:
-#   schemas:
-#     RegisterUserRequest:
-#       title: RegisterUserRequest
-#       required:
-#         - name
-#         - email
-#         - password
-#       type: object
-#       properties:
-#         name:
-#           type: string
-#         email:
-#           type: string
-#         password:
-#           type: string
-#       example:
-#         name: bob
-#         email: bob@gmail.com
-#         password: secret
-#     LoginUserRequest:
-#       title: LoginUserRequest
-#       required:
-#         - email
-#         - password
-#       type: object
-#       properties:
-#         email:
-#           type: string
-#         password:
-#           type: string
-#       example:
-#         email: susan@gmail.com
-#         password: secret
-#     CreateJobRequest:
-#       title: CreateJobRequest
-#       required:
-#         - company
-#         - position
-#       type: object
-#       properties:
-#         company:
-#           type: string
-#         position:
-#           type: string
-#       example:
-#         company: google
-#         position: front-end developer
-#     UpdateJobRequest:
-#       title: UpdateJobRequest
-#       required:
-#         - company
-#         - position
-#       type: object
-#       properties:
-#         company:
-#           type: string
-#         position:
-#           type: string
-#       example:
-#         company: random
-#         position: intern
-#   securitySchemes:
-#     httpBearer:
-#       type: http
-#       scheme: bearer
-# security:
-#   - httpBearer: []
-# tags:
-#   - name: Auth
-#     description: ''
-#   - name: Jobs
-#     description: ''
+  contact: {}
+  version: '1.0'
+servers:
+  - url: "http://localhost:3221/api/v1"
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserRequest'
+            example:
+              name: bob
+              email: bob@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUserRequest'
+            example:
+              email: susan@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /user/updateUser:
+    patch:
+      tags:
+        - User
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+            example:
+              name: bob
+              email: bob@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /user/updateUserPassword:
+    patch:
+      tags:
+        - User
+      summary: Update User Password
+      operationId: UpdateUserPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPasswordRequest'
+            example:
+              oldPassword: secret
+              newPassword: secrets
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /movie:
+    post:
+      tags:
+        - Movies
+      summary: Create Movies
+      operationId: CreateMovie
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMovieRequest'
+            example:
+              title: Wakanda Forever
+              genre: Action
+              releaseYear: 2021,
+              rating: 4,
+              description: A very interesting Movie
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /movie/getAllUserMovies:
+    get:
+      tags:
+        - Movies
+      summary: Get All Movies
+      operationId: GetAllMovies
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /movie/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The movie ID
+    get:
+      tags:
+        - Movies
+      summary: Get Single Movie
+      operationId: GetSingleMovie
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    patch:
+      tags:
+        - Movies
+      summary: Update Movie
+      operationId: UpdateMovie
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMovieRequest'
+            example:
+              title: Wakanda Forever
+              genre: [action,thriller]
+              releaseYear: 2021,
+              rating: 4,
+              description: A very interesting Movie
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Movies
+      summary: Delete Movie
+      operationId: DeleteMovie
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /book:
+    post:
+      tags:
+        - Books
+      summary: Create Books
+      operationId: CreateBooks
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookRequest'
+            example:
+              title: The Alchemist
+              author: Paulo Coelho
+              publicationYear: 1989
+              genre: motivation
+              rating: 4.7
+              description: A very very good book
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /book/getAllUserBooks:
+    get:
+      tags:
+        - Books
+      summary: Get All User Books
+      operationId: GetAllBooks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /book/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The book ID
+    get:
+      tags:
+        - Books
+      summary: Get Single Book
+      operationId: GetSingleBook
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    patch:
+      tags:
+        - Books
+      summary: Update Books
+      operationId: UpdateBook
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookRequest'
+            example:
+              title: The Alchemist
+              author: Paulo Coelho
+              publicationYear: 1989
+              genre: motivation
+              rating: 4.7
+              description: A very very good book
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Books
+      summary: Delete Books
+      operationId: DeleteBooks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: bob
+        email: bob@gmail.com
+        password: secret
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: susan@gmail.com
+        password: secret
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+        - name
+        - email
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      example:
+        name: bob
+        email: bob@gmail.com
+    UpdateUserPasswordRequest:
+      title: UpdateUserPasswordRequest
+      required:
+        - oldPassword
+        - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: secret
+        newPassword: secret
+    CreateMovieRequest:
+      title: CreateMovieRequest
+      required:
+        - title
+        - genre
+        - releaseYear
+        - rating
+        - description
+      type: object
+      properties:
+        title:
+          type: string
+        genre:
+          type: string
+        releaseYear:
+          type: Number
+        rating:
+          type: Number
+        description:
+          type: string
+      example:
+        title: Wakanda Forever
+        genre: action
+        releaseYear: 2021,
+        rating: 4,
+        description: A very interesting Movie
+    UpdateMovieRequest:
+      title: UpdateMovieRequest
+      required:
+       title: Wakanda Forever
+        genre: action
+        releaseYear: 2021,
+        rating: 4,
+        description: A very interesting Movie
+      type: object
+      properties:
+        title:
+          type: string
+        genre:
+          type: string
+        releaseYear:
+          type: Number
+        rating:
+          type: Number
+        description:
+          type: string
+      example:
+        title: Wakanda Forever
+        genre: action
+        releaseYear: 2021,
+        rating: 4,
+        description: A very interesting Movie
+    CreateBookRequest:
+      title: CreateBookRequest
+      required:
+        - title
+        - author
+        - publicationYear
+        - genre
+        - rating
+        - description
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        publicationYear:
+          type: Number
+        genre:
+          type: string
+        rating:
+          type: Number
+        description:
+          type: string
+      example:
+        title: The Alchemist
+        author: Paulo Coelho
+        publicationYear: 1989
+        genre: motivation
+        rating: 4.7
+        description: A very very good book
+    UpdateBookRequest:
+      title: UpdateBookRequest
+      required:
+        title: The Alchemist
+        author: Paulo Coelho
+        publicationYear: 1989
+        genre: motivation
+        rating: 4.7
+        description: A very very good book
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        publicationYear:
+          type: Number
+        genre:
+          type: string
+        rating:
+          type: Number
+        description:
+          type: string
+      example:
+        title: The Alchemist
+        author: Paulo Coelho
+        publicationYear: 1989
+        genre: motivation
+        rating: 4.7
+        description: A very very good book
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+  - httpBearer: []
+tags:
+  - name: Auth
+    description: 'Users can register and log in with their credentials.. Authentication, and passwords are properly handled.'
+  - name: Movies
+    description: 'Users can perform CRUD operations. Create movies, see a list of their movies, update and delete movies..'
+  - name: Books
+    description: 'Users can create books, see a list of their books, update and delete books'
+  - name: User
+    description: 'Registered users can update their details as well as update their password'
 
 
 

@@ -2,16 +2,17 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 require('express-async-errors');
+const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-// const swaggerjsDoc = require('swagger-jsdoc');
-// const swaggerUI = require('swagger-ui-express');
+const swaggerjsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 
 
 //SWAGGER
-// const YAML = require('yamljs');
-// const specs = YAML.load('./swagger.yaml');
+const YAML = require('yamljs');
+const specs = YAML.load('./swagger.yaml');
 
 
 
@@ -49,6 +50,7 @@ app.use(xss());
 
 
 
+app.use(express.static('./public'));
 
 
 
@@ -65,7 +67,7 @@ app.get('/',(req,res) => {
     res.send('<h1>This is my Homepage</h1>')
 });
 
-// app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 
 app.get('/api/v1',(req,res) => {
