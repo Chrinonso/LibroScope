@@ -6,7 +6,7 @@ info:
   contact: {}
   version: '1.0'
 servers:
-  - url: "http://localhost:3221/api/v1"
+  - url: "https://libroscope-apps.onrender.com/api/v1"
     variables: {}
 paths:
   /auth/register:
